@@ -1,0 +1,33 @@
+order_item_id,order_id,product_id,product_name,category,quantity,unit_price,total_price
+1,1001,101,Wireless Headphones,Electronics,1,150.00,150.00
+2,1002,102,Running Shoes,Sports,1,89.50,89.50
+3,1003,101,Wireless Headphones,Electronics,1,150.00,150.00
+4,1003,103,Bluetooth Speaker,Electronics,1,60.00,60.00
+5,1004,104,Yoga Mat,Sports,1,45.00,45.00
+6,1005,105,Leather Wallet,Accessories,1,320.00,320.00
+7,1006,106,Coffee Maker,Home,1,75.00,75.00
+8,1007,102,Running Shoes,Sports,2,89.50,179.00
+9,1008,107,Desk Lamp,Home,1,95.00,95.00
+10,1009,108,Backpack,Accessories,1,250.00,250.00
+11,1010,103,Bluetooth Speaker,Electronics,1,120.00,120.00
+12,1011,101,Wireless Headphones,Electronics,1,150.00,150.00
+13,1011,109,Phone Case,Accessories,1,45.00,45.00
+14,1012,110,Tennis Racket,Sports,1,60.00,60.00
+15,1013,105,Leather Wallet,Accessories,1,300.00,300.00
+16,1014,106,Coffee Maker,Home,1,175.00,175.00
+17,1015,107,Desk Lamp,Home,1,85.00,85.00
+18,1016,108,Backpack,Accessories,1,220.00,220.00
+19,1017,102,Running Shoes,Sports,1,110.00,110.00
+20,1018,109,Phone Case,Accessories,2,45.00,90.00
+21,1019,103,Bluetooth Speaker,Electronics,1,90.00,90.00
+22,1020,111,Smart Watch,Electronics,1,160.00,160.00
+23,1021,104,Yoga Mat,Sports,1,130.00,130.00
+24,1022,101,Wireless Headphones,Electronics,1,140.00,140.00
+25,1023,112,Gym Bag,Sports,1,200.00,200.00
+26,1024,113,Water Bottle,Sports,1,75.00,75.00
+27,1025,114,Headphone Stand,Accessories,1,310.00,310.00
+28,1026,115,Mechanical Keyboard,Electronics,1,55.00,55.00
+29,1027,106,Coffee Maker,Home,1,185.00,185.00
+30,1028,102,Running Shoes,Sports,1,95.00,95.00
+31,1029,107,Desk Lamp,Home,1,125.00,125.00
+32,1030,108,Backpack,Accessories,1,230.00,230.00

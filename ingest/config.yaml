@@ -1,0 +1,20 @@
+database:
+  host: "127.0.0.1"
+  port: 5433
+  dbname: "reviews"
+  user: "review_app"
+  password: "IIsXAi1mcvgYNTZv"
+
+fx_api:
+  base_url: "https://api.frankfurter.app"
+  base_currency: "USD"
+  timeout_seconds: 10
+
+files:
+  customers: "../data/customers.csv"
+  orders: "../data/orders.csv"
+  order_items: "../data/order_items.csv"
+
+logging:
+  level: "INFO"
+  file: "logs/ingest.log"

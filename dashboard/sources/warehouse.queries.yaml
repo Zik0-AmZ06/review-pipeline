@@ -1,0 +1,81 @@
+monthly_revenue:
+  query: |
+    SELECT
+        year_month,
+        SUM(total_price) as revenue
+    FROM fact_order_items
+    GROUP BY year_month
+    ORDER BY year_month
+
+top_products:
+  query: |
+    SELECT
+        product_name,
+        SUM(total_price) as total_revenue,
+        SUM(quantity) as total_quantity
+    FROM fact_order_items
+    GROUP BY product_name
+    ORDER BY total_revenue DESC
+    LIMIT 10
+
+customer_cohort:
+  query: |
+    WITH first_order AS (
+        SELECT
+            customer_id,
+            DATE_TRUNC('month', MIN(order_date))::date as cohort_month
+        FROM fact_order_items
+        GROUP BY customer_id
+    ),
+    orders_by_month AS (
+        SELECT
+            f.customer_id,
+            DATE_TRUNC('month', f.order_date)::date as order_month
+        FROM fact_order_items f
+        JOIN first_order c ON f.customer_id = c.customer_id
+    ),
+    cohort_sizes AS (
+        SELECT cohort_month, COUNT(DISTINCT customer_id) as cohort_size
+        FROM first_order
+        GROUP BY cohort_month
+    ),
+    retention AS (
+        SELECT
+            c.cohort_month,
+            o.order_month,
+            COUNT(DISTINCT o.customer_id) as active_customers
+        FROM first_order c
+        JOIN orders_by_month o ON c.customer_id = o.customer_id
+        GROUP BY c.cohort_month, o.order_month
+    )
+    SELECT
+        r.cohort_month,
+        r.order_month,
+        r.active_customers,
+        cs.cohort_size,
+        ROUND(r.active_customers::numeric / cs.cohort_size * 100, 1) as retention_pct
+    FROM retention r
+    JOIN cohort_sizes cs ON r.cohort_month = cs.cohort_month
+    ORDER BY r.cohort_month, r.order_month
+
+returning_customers:
+  query: |
+    SELECT
+        COUNT(DISTINCT customer_id) as total_customers,
+        COUNT(DISTINCT CASE WHEN order_count > 1 THEN customer_id END) as returning_customers,
+        ROUND(COUNT(DISTINCT CASE WHEN order_count > 1 THEN customer_id END)::numeric / COUNT(DISTINCT customer_id) * 100, 1) as return_rate_pct
+    FROM (
+        SELECT customer_id, COUNT(DISTINCT order_id) as order_count
+        FROM fact_order_items
+        GROUP BY customer_id
+    ) c
+
+currency_breakdown:
+  query: |
+    SELECT
+        currency,
+        COUNT(DISTINCT order_id) as orders,
+        SUM(total_price) as revenue
+    FROM fact_order_items
+    GROUP BY currency
+    ORDER BY revenue DESC

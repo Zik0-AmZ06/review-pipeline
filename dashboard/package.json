@@ -1,0 +1,14 @@
+{
+  "name": "review-pipeline-dashboard",
+  "version": "1.0.0",
+  "description": "E-commerce data warehouse dashboard",
+  "scripts": {
+    "dev": "evidence dev",
+    "build": "evidence build",
+    "deploy": "evidence deploy"
+  },
+  "dependencies": {
+    "@evidence-dev/evidence": "^0.2.0",
+    "pg": "^8.11.0"
+  }
+}

@@ -1,0 +1,200 @@
+2026-10-29 12:38:34,985 | INFO     | ============================================================
+2026-10-29 12:38:34,986 | INFO     | Starting ingestion run
+2026-10-29 12:38:34,988 | ERROR    | Ingestion failed: [Errno 2] No such file or directory: '../data/customers.csv'
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 254, in main
+    customers, orders, order_items = load_csvs(config)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 94, in load_csvs
+    customers = pd.read_csv(files["customers"])
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pandas\io\parsers\readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pandas\io\parsers\readers.py", line 611, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pandas\io\parsers\readers.py", line 1448, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pandas\io\parsers\readers.py", line 1705, in _make_engine
+    self.handles = get_handle(
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pandas\io\common.py", line 863, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: '../data/customers.csv'
+2026-10-29 12:45:03,779 | INFO     | ============================================================
+2026-10-29 12:45:03,780 | INFO     | Starting ingestion run
+2026-10-29 12:45:03,816 | INFO     | Loaded customers: 20 rows
+2026-10-29 12:45:03,817 | INFO     | Loaded orders: 30 rows
+2026-10-29 12:45:03,817 | INFO     | Loaded order_items: 32 rows
+2026-10-29 12:45:03,847 | INFO     | Fetching FX rates for 30 dates...
+2026-10-29 12:45:09,770 | INFO     | FX rates fetched for 2023-01-20: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:10,184 | INFO     | FX rates fetched for 2023-02-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:11,046 | INFO     | FX rates fetched for 2023-02-25: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:11,508 | INFO     | FX rates fetched for 2023-03-05: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:11,928 | INFO     | FX rates fetched for 2023-03-15: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:12,277 | INFO     | FX rates fetched for 2023-04-12: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:12,796 | INFO     | FX rates fetched for 2023-05-20: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:13,262 | INFO     | FX rates fetched for 2023-06-01: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:13,620 | INFO     | FX rates fetched for 2023-06-15: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:13,999 | INFO     | FX rates fetched for 2023-07-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:14,550 | INFO     | FX rates fetched for 2023-07-25: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:15,196 | INFO     | FX rates fetched for 2023-08-05: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:15,649 | INFO     | FX rates fetched for 2023-08-20: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:16,083 | INFO     | FX rates fetched for 2023-09-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:16,513 | INFO     | FX rates fetched for 2023-09-25: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:17,039 | INFO     | FX rates fetched for 2023-10-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:17,464 | INFO     | FX rates fetched for 2023-10-25: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:17,893 | INFO     | FX rates fetched for 2023-11-05: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:18,330 | INFO     | FX rates fetched for 2023-11-20: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:18,768 | INFO     | FX rates fetched for 2023-12-01: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:19,241 | INFO     | FX rates fetched for 2023-12-15: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:19,753 | INFO     | FX rates fetched for 2024-01-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:20,213 | INFO     | FX rates fetched for 2024-01-25: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:20,646 | INFO     | FX rates fetched for 2024-02-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:21,045 | INFO     | FX rates fetched for 2024-02-20: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:21,524 | INFO     | FX rates fetched for 2024-03-05: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:22,028 | INFO     | FX rates fetched for 2024-03-15: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:22,420 | INFO     | FX rates fetched for 2024-04-01: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:22,858 | INFO     | FX rates fetched for 2024-04-15: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:23,359 | INFO     | FX rates fetched for 2024-05-01: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:45:23,602 | ERROR    | Ingestion failed: there is no unique or exclusion constraint matching the ON CONFLICT specification
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 282, in main
+    upsert_staging(conn, customers, orders, order_items)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 122, in upsert_staging
+    execute_values(cur, """
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\psycopg2\extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+2026-10-29 12:51:45,579 | INFO     | ============================================================
+2026-10-29 12:51:45,579 | INFO     | Starting ingestion run
+2026-10-29 12:51:45,593 | INFO     | Loaded customers: 20 rows
+2026-10-29 12:51:45,594 | INFO     | Loaded orders: 30 rows
+2026-10-29 12:51:45,594 | INFO     | Loaded order_items: 32 rows
+2026-10-29 12:51:45,600 | INFO     | Fetching FX rates for 30 dates...
+2026-10-29 12:51:49,132 | INFO     | FX rates fetched for 2023-01-20: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:49,521 | INFO     | FX rates fetched for 2023-02-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:49,810 | INFO     | FX rates fetched for 2023-02-25: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:50,226 | INFO     | FX rates fetched for 2023-03-05: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:50,567 | INFO     | FX rates fetched for 2023-03-15: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:50,853 | INFO     | FX rates fetched for 2023-04-12: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:51,216 | INFO     | FX rates fetched for 2023-05-20: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:51,437 | INFO     | FX rates fetched for 2023-06-01: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:51,638 | INFO     | FX rates fetched for 2023-06-15: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:51,861 | INFO     | FX rates fetched for 2023-07-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:52,271 | INFO     | FX rates fetched for 2023-07-25: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:52,527 | INFO     | FX rates fetched for 2023-08-05: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:52,924 | INFO     | FX rates fetched for 2023-08-20: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:53,276 | INFO     | FX rates fetched for 2023-09-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:53,565 | INFO     | FX rates fetched for 2023-09-25: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:53,942 | INFO     | FX rates fetched for 2023-10-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:54,327 | INFO     | FX rates fetched for 2023-10-25: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:54,683 | INFO     | FX rates fetched for 2023-11-05: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:54,999 | INFO     | FX rates fetched for 2023-11-20: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:55,448 | INFO     | FX rates fetched for 2023-12-01: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:55,765 | INFO     | FX rates fetched for 2023-12-15: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:56,209 | INFO     | FX rates fetched for 2024-01-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:56,529 | INFO     | FX rates fetched for 2024-01-25: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:56,865 | INFO     | FX rates fetched for 2024-02-10: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:57,407 | INFO     | FX rates fetched for 2024-02-20: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:57,918 | INFO     | FX rates fetched for 2024-03-05: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:58,341 | INFO     | FX rates fetched for 2024-03-15: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:58,600 | INFO     | FX rates fetched for 2024-04-01: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:59,196 | INFO     | FX rates fetched for 2024-04-15: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:59,708 | INFO     | FX rates fetched for 2024-05-01: ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR', 'USD']
+2026-10-29 12:51:59,939 | INFO     | Upserted 20 customers
+2026-10-29 12:51:59,996 | INFO     | Upserted 30 orders
+2026-10-29 12:52:00,028 | INFO     | Upserted 32 order items
+2026-10-29 12:52:00,092 | INFO     | Dimensions and fact rebuilt
+2026-10-29 12:52:00,094 | INFO     | Ingestion completed successfully
+2026-10-29 18:17:18,830 | INFO     | ============================================================
+Ingestion run
+2026-10-29 18:17:18,883 | INFO     | Loaded c: 20 rows
+2026-10-29 18:17:18,883 | INFO     | Loaded o: 30 rows
+2026-10-29 18:17:18,884 | INFO     | Loaded i: 32 rows
+2026-10-29 18:17:34,645 | ERROR    | Failed: 'Series' object has no attribute 'cid'
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 158, in main
+    upsert_staging(conn,c,o,i)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 82, in upsert_staging
+    errs = validate_cust(r)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 54, in validate_cust
+    if pd.isna(r.cid) or not str(r.cid).strip().isdigit(): e+=("INVALID_ID",f"id={r.cid}")
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pandas\core\generic.py", line 6204, in __getattr__
+    return object.__getattribute__(self, name)
+AttributeError: 'Series' object has no attribute 'cid'
+2026-10-29 18:26:31,388 | INFO     | ============================================================
+Ingestion run
+2026-10-29 18:26:31,409 | INFO     | Loaded c: 20 rows
+2026-10-29 18:26:31,409 | INFO     | Loaded o: 30 rows
+2026-10-29 18:26:31,410 | INFO     | Loaded i: 32 rows
+2026-10-29 18:26:59,420 | ERROR    | Failed: cannot insert into view "stg_customers"
+DETAIL:  Views containing WITH are not automatically updatable.
+HINT:  To enable inserting into the view, provide an INSTEAD OF INSERT trigger or an unconditional ON INSERT DO INSTEAD rule.
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 212, in main
+    upsert_staging(conn,c,o,i)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 170, in upsert_staging
+    execute_values(cur, """INSERT INTO stg_customers(customer_id,first_name,last_name,email,created_at,country) VALUES %s ON CONFLICT(customer_id) DO UPDATE SET first_name=EXCLUDED.first_name,last_name=EXCLUDED.last_name,email=EXCLUDED.email,created_at=EXCLUDED.created_at,country=EXCLUDED.country""", rows)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\psycopg2\extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.ObjectNotInPrerequisiteState: cannot insert into view "stg_customers"
+DETAIL:  Views containing WITH are not automatically updatable.
+HINT:  To enable inserting into the view, provide an INSTEAD OF INSERT trigger or an unconditional ON INSERT DO INSTEAD rule.
+
+2026-10-29 18:31:14,689 | INFO     | ============================================================
+Ingestion run
+2026-10-29 18:31:14,711 | INFO     | Loaded c: 20 rows
+2026-10-29 18:31:14,712 | INFO     | Loaded o: 30 rows
+2026-10-29 18:31:14,713 | INFO     | Loaded i: 32 rows
+2026-10-29 18:31:46,416 | WARNING  | FX failed 2023-02-25: HTTPSConnectionPool(host='api.frankfurter.dev', port=443): Read timed out. (read timeout=10)
+2026-10-29 18:32:14,681 | ERROR    | Failed: cannot insert into view "stg_customers"
+DETAIL:  Views containing WITH are not automatically updatable.
+HINT:  To enable inserting into the view, provide an INSTEAD OF INSERT trigger or an unconditional ON INSERT DO INSTEAD rule.
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 212, in main
+    upsert_staging(conn,c,o,i)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 170, in upsert_staging
+    execute_values(cur, """INSERT INTO stg_customers(customer_id,first_name,last_name,email,created_at,country) VALUES %s ON CONFLICT(customer_id) DO UPDATE SET first_name=EXCLUDED.first_name,last_name=EXCLUDED.last_name,email=EXCLUDED.email,created_at=EXCLUDED.created_at,country=EXCLUDED.country""", rows)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\psycopg2\extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.ObjectNotInPrerequisiteState: cannot insert into view "stg_customers"
+DETAIL:  Views containing WITH are not automatically updatable.
+HINT:  To enable inserting into the view, provide an INSTEAD OF INSERT trigger or an unconditional ON INSERT DO INSTEAD rule.
+
+2026-10-29 18:38:28,238 | INFO     | ============================================================
+Ingestion run
+2026-10-29 18:38:28,254 | INFO     | Loaded c: 20 rows
+2026-10-29 18:38:28,255 | INFO     | Loaded o: 30 rows
+2026-10-29 18:38:28,255 | INFO     | Loaded i: 32 rows
+2026-10-29 18:38:39,357 | ERROR    | Failed: cannot insert into view "stg_customers"
+DETAIL:  Views containing WITH are not automatically updatable.
+HINT:  To enable inserting into the view, provide an INSTEAD OF INSERT trigger or an unconditional ON INSERT DO INSTEAD rule.
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 212, in main
+    upsert_staging(conn,c,o,i)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 170, in upsert_staging
+    execute_values(cur, """INSERT INTO stg_customers(customer_id,first_name,last_name,email,created_at,country) VALUES %s ON CONFLICT(customer_id) DO UPDATE SET first_name=EXCLUDED.first_name,last_name=EXCLUDED.last_name,email=EXCLUDED.email,created_at=EXCLUDED.created_at,country=EXCLUDED.country""", rows)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\psycopg2\extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.ObjectNotInPrerequisiteState: cannot insert into view "stg_customers"
+DETAIL:  Views containing WITH are not automatically updatable.
+HINT:  To enable inserting into the view, provide an INSTEAD OF INSERT trigger or an unconditional ON INSERT DO INSTEAD rule.
+
+2026-10-29 18:42:22,052 | INFO     | ============================================================
+Ingestion run
+2026-10-29 18:42:22,066 | INFO     | Loaded c: 20 rows
+2026-10-29 18:42:22,066 | INFO     | Loaded o: 30 rows
+2026-10-29 18:42:22,066 | INFO     | Loaded i: 32 rows
+2026-10-29 18:42:36,171 | INFO     | Upserted 20 clean rows to stg_c
+2026-10-29 18:42:36,184 | INFO     | Upserted 30 clean rows to stg_o
+2026-10-29 18:42:36,189 | INFO     | Upserted 32 clean rows to stg_i
+2026-10-29 18:42:36,204 | ERROR    | Failed: column "cid" of relation "dim_customer" does not exist
+LINE 3:     INSERT INTO dim_customer(cid,fn,ln,em,dt,ctry,reg)
+                                     ^
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 213, in main
+    rebuild_dims_fact(conn)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 182, in rebuild_dims_fact
+    cur.execute("""
+psycopg2.errors.UndefinedColumn: column "cid" of relation "dim_customer" does not exist
+LINE 3:     INSERT INTO dim_customer(cid,fn,ln,em,dt,ctry,reg)
+                                     ^
+
