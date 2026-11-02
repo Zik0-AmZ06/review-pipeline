@@ -2,22 +2,23 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import psycopg2
+import streamlit as st
+from sqlalchemy import create_engine
 from datetime import datetime
 
 st.set_page_config(page_title="E-Commerce Data Warehouse", layout="wide")
 
 # ─── DB Connection ───
 @st.cache_resource
-def get_conn():
-    return psycopg2.connect(
-        host="127.0.0.1", port=5433, dbname="reviews",
-        user="review_app", password="IIsXAi1mcvgYNTZv"
-    )
+def get_engine():
+    # Works both locally (if you set .streamlit/secrets.toml) and on Streamlit Cloud
+    db_url = st.secrets.get("DATABASE_URL",
+                            "postgresql://review_app:IIsXAi1mcvgYNTZv@127.0.0.1:5433/reviews")
+    return create_engine(db_url)
 
 @st.cache_data(ttl=300)
 def run_query(sql: str) -> pd.DataFrame:
-    return pd.read_sql(sql, get_conn())
+    return pd.read_sql(sql, get_engine())
 
 # ─── Queries ───
 MONTHLY_REV = """
