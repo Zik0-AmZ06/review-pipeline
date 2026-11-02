@@ -11,9 +11,11 @@ st.set_page_config(page_title="E-Commerce Data Warehouse", layout="wide")
 # ─── DB Connection ───
 @st.cache_resource
 def get_engine():
-    # Works both locally (if you set .streamlit/secrets.toml) and on Streamlit Cloud
     db_url = st.secrets.get("DATABASE_URL",
                             "postgresql://review_app:IIsXAi1mcvgYNTZv@127.0.0.1:5433/reviews")
+    # Force psycopg2 driver (since we have psycopg2-binary installed)
+    if db_url.startswith("postgresql://"):
+        db_url = db_url.replace("postgresql://", "postgresql+psycopg2://", 1)
     return create_engine(db_url)
 
 @st.cache_data(ttl=300)
