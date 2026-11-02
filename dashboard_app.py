@@ -2,18 +2,11 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import psycopg2
 from datetime import datetime
 
 st.set_page_config(page_title="E-Commerce Data Warehouse", layout="wide")
 
 # ─── DB Connection ───
-@st.cache_resource
-def get_conn():
-    return psycopg2.connect(
-        host="127.0.0.1", port=5433, dbname="reviews",
-        user="review_app", password="IIsXAi1mcvgYNTZv"
-    )
 
 @st.cache_data(ttl=300)
 def run_query(sql: str) -> pd.DataFrame:
