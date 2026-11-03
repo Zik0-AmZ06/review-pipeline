@@ -24,6 +24,7 @@ jobs:
           POSTGRES_DB: reviews
           POSTGRES_USER: review_app
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST_AUTH_METHOD: trust # fallback
         ports:
           - 5432:5432
         options: >-
