@@ -1,3 +1,7 @@
+![CI/CD](https://github.com/Zik0-AmZ06/review-pipeline/workflows/CI/CD%20Pipeline/badge.svg)
+[![Streamlit Dashboard](https://img.shields.io/badge/Dashboard-Live-brightgreen)](https://review-pipeline-47wlmbfayhc759wwvepuz9.streamlit.app/)
+[![dbt Docs](https://img.shields.io/badge/dbt_Docs-Live-blue)](https://review-pipeline-47wlmbfayhc759wwvepuz9.streamlit.app/dbt-docs)
+
 # 🛒 E-Commerce Data Warehouse Pipeline
 
 End-to-end data pipeline: **CSV → PostgreSQL → dbt → Evidence Dashboard**
