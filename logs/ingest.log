@@ -206,3 +206,115 @@ Ingestion run
 2026-10-29 18:48:30,176 | INFO     | Upserted 20 clean rows to stg_c
 2026-10-29 18:48:30,182 | INFO     | Upserted 30 clean rows to stg_o
 2026-10-29 18:48:30,188 | INFO     | Upserted 32 clean rows to stg_i
+2026-11-02 13:17:20,934 | INFO     | ============================================================
+Ingestion run
+2026-11-02 13:17:21,014 | INFO     | Loaded c: 20 rows
+2026-11-02 13:17:21,014 | INFO     | Loaded o: 30 rows
+2026-11-02 13:17:21,015 | INFO     | Loaded i: 32 rows
+2026-11-02 13:17:36,925 | INFO     | Upserted 20 clean rows to stg_c
+2026-11-02 13:17:36,939 | INFO     | Upserted 30 clean rows to stg_o
+2026-11-02 13:17:36,948 | INFO     | Upserted 32 clean rows to stg_i
+2026-11-02 13:41:37,538 | INFO     | ============================================================
+Ingestion run
+2026-11-02 13:41:37,545 | INFO     | Loaded c: 20 rows
+2026-11-02 13:41:37,545 | INFO     | Loaded o: 30 rows
+2026-11-02 13:41:37,545 | INFO     | Loaded i: 32 rows
+2026-11-02 13:41:53,430 | ERROR    | Failed: could not translate host name "postgresql://neondb_owner:npg_7e9bygLXEPHW@ep-winter-rain-b5slpg49-pooler.c-7.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require" to address: A non-recoverable error occurred during a database lookup. 
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 227, in main
+    conn=get_db_connection(cfg)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 20, in get_db_connection
+    return psycopg2.connect(host=db["host"], port=db["port"], dbname=db["dbname"],
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgresql://neondb_owner:npg_7e9bygLXEPHW@ep-winter-rain-b5slpg49-pooler.c-7.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require" to address: A non-recoverable error occurred during a database lookup. 
+
+2026-11-03 12:23:51,417 | INFO     | ============================================================
+Ingestion run
+2026-11-03 12:23:51,528 | INFO     | Loaded c: 20 rows
+2026-11-03 12:23:51,529 | INFO     | Loaded o: 30 rows
+2026-11-03 12:23:51,530 | INFO     | Loaded i: 32 rows
+2026-11-03 12:24:05,266 | ERROR    | Failed: could not translate host name "postgresql://neondb_owner:npg_7e9bygLXEPHW@ep-winter-rain-b5slpg49-pooler.c-7.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require" to address: A non-recoverable error occurred during a database lookup. 
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 227, in main
+    conn=get_db_connection(cfg)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 20, in get_db_connection
+    return psycopg2.connect(host=db["host"], port=db["port"], dbname=db["dbname"],
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgresql://neondb_owner:npg_7e9bygLXEPHW@ep-winter-rain-b5slpg49-pooler.c-7.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require" to address: A non-recoverable error occurred during a database lookup. 
+
+2026-11-03 12:27:10,706 | INFO     | ============================================================
+Ingestion run
+2026-11-03 12:27:10,797 | INFO     | Loaded c: 20 rows
+2026-11-03 12:27:10,804 | INFO     | Loaded o: 30 rows
+2026-11-03 12:27:10,813 | INFO     | Loaded i: 32 rows
+2026-11-03 12:27:32,779 | INFO     | Upserted 20 clean rows to stg_c
+2026-11-03 12:27:32,895 | INFO     | Upserted 30 clean rows to stg_o
+2026-11-03 12:27:33,016 | INFO     | Upserted 32 clean rows to stg_i
+2026-11-03 12:27:33,363 | ERROR    | Failed: relation "dim_customer" does not exist
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 229, in main
+    rebuild_dims_fact(conn)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 182, in rebuild_dims_fact
+    cur.execute("""
+psycopg2.errors.UndefinedTable: relation "dim_customer" does not exist
+
+2026-11-03 12:36:38,231 | INFO     | ============================================================
+Ingestion run
+2026-11-03 12:36:38,241 | INFO     | Loaded c: 20 rows
+2026-11-03 12:36:38,242 | INFO     | Loaded o: 30 rows
+2026-11-03 12:36:38,242 | INFO     | Loaded i: 32 rows
+2026-11-03 12:36:55,906 | INFO     | Upserted 20 clean rows to stg_c
+2026-11-03 12:36:56,034 | INFO     | Upserted 30 clean rows to stg_o
+2026-11-03 12:36:56,157 | INFO     | Upserted 32 clean rows to stg_i
+2026-11-03 12:36:56,522 | ERROR    | Failed: relation "dim_customer" does not exist
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 229, in main
+    rebuild_dims_fact(conn)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 182, in rebuild_dims_fact
+    cur.execute("""
+psycopg2.errors.UndefinedTable: relation "dim_customer" does not exist
+
+2026-11-03 12:41:49,238 | INFO     | ============================================================
+Ingestion run
+2026-11-03 12:41:49,311 | INFO     | Loaded c: 20 rows
+2026-11-03 12:41:49,323 | INFO     | Loaded o: 30 rows
+2026-11-03 12:41:49,326 | INFO     | Loaded i: 32 rows
+2026-11-03 12:42:11,670 | INFO     | Upserted 20 clean rows to stg_c
+2026-11-03 12:42:11,785 | INFO     | Upserted 30 clean rows to stg_o
+2026-11-03 12:42:11,910 | ERROR    | Failed: there is no unique or exclusion constraint matching the ON CONFLICT specification
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 228, in main
+    upsert_staging(conn,c,o,i)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 174, in upsert_staging
+    execute_values(cur, """INSERT INTO stg_order_items(order_item_id,order_id,product_id,product_name,category,quantity,unit_price,total_price) VALUES %s ON CONFLICT(order_item_id) DO UPDATE SET order_id=EXCLUDED.order_id,product_id=EXCLUDED.product_id,product_name=EXCLUDED.product_name,category=EXCLUDED.category,quantity=EXCLUDED.quantity,unit_price=EXCLUDED.unit_price,total_price=EXCLUDED.total_price""", rows)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\psycopg2\extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+2026-11-03 12:57:13,911 | INFO     | ============================================================
+Ingestion run
+2026-11-03 12:57:13,943 | INFO     | Loaded c: 20 rows
+2026-11-03 12:57:13,944 | INFO     | Loaded o: 30 rows
+2026-11-03 12:57:13,944 | INFO     | Loaded i: 32 rows
+2026-11-03 12:57:26,564 | ERROR    | Failed: there is no unique or exclusion constraint matching the ON CONFLICT specification
+Traceback (most recent call last):
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 228, in main
+    upsert_staging(conn,c,o,i)
+  File "C:\Users\amouz\source\repos\review-pipeline\ingest\load_data.py", line 170, in upsert_staging
+    execute_values(cur, """INSERT INTO stg_customers(customer_id,first_name,last_name,email,created_at,country) VALUES %s ON CONFLICT(customer_id) DO UPDATE SET first_name=EXCLUDED.first_name,last_name=EXCLUDED.last_name,email=EXCLUDED.email,created_at=EXCLUDED.created_at,country=EXCLUDED.country""", rows)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\psycopg2\extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+2026-11-03 13:03:07,688 | INFO     | ============================================================
+Ingestion run
+2026-11-03 13:03:07,703 | INFO     | Loaded c: 20 rows
+2026-11-03 13:03:07,704 | INFO     | Loaded o: 30 rows
+2026-11-03 13:03:07,704 | INFO     | Loaded i: 32 rows
+2026-11-03 13:03:21,065 | INFO     | Upserted 20 clean rows to stg_c
+2026-11-03 13:03:21,179 | INFO     | Upserted 30 clean rows to stg_o
+2026-11-03 13:03:21,299 | INFO     | Upserted 32 clean rows to stg_i
+2026-11-03 13:03:21,980 | INFO     | Dims+fact rebuilt
+2026-11-03 13:03:21,981 | INFO     | Done

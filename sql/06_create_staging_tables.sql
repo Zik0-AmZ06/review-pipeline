@@ -1,9 +1,9 @@
 -- Real staging tables for Python loader to insert into
 -- dbt will reference these as sources
 
-DROP VIEW IF EXISTS stg_order_items CASCADE;
-DROP VIEW IF EXISTS stg_orders CASCADE;
-DROP VIEW IF EXISTS stg_customers CASCADE;
+DROP TABLE IF EXISTS stg_order_items CASCADE;
+DROP TABLE IF EXISTS stg_orders CASCADE;
+DROP TABLE IF EXISTS stg_customers CASCADE;
 
 CREATE TABLE stg_customers (
     customer_id   INT PRIMARY KEY,

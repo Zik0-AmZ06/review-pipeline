@@ -31,9 +31,10 @@ MONTHLY_REV = """
 """
 
 TOP_PRODUCTS = """
-    SELECT product_name, SUM(total_price) as total_revenue, SUM(quantity) as total_quantity
-    FROM fact_order_items
-    GROUP BY product_name
+    SELECT p.product_name, SUM(f.total_price) as total_revenue, SUM(f.quantity) as total_quantity
+    FROM fact_order_items f
+    JOIN dim_product p ON f.product_id = p.product_id
+    GROUP BY p.product_name
     ORDER BY total_revenue DESC
     LIMIT 10
 """

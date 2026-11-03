@@ -1,9 +1,9 @@
 database:
-  host: "127.0.0.1"
-  port: 5433
-  dbname: "reviews"
-  user: "review_app"
-  password: "IIsXAi1mcvgYNTZv"
+  host: "ep-winter-rain-b5slpg49-pooler.c-7.us-east-2.aws.neon.tech"
+  port: 5432
+  dbname: "neondb"
+  user: "neondb_owner"
+  password: "npg_7e9bygLXEPHW"
 
 fx_api:
   base_url: "https://api.frankfurter.app"

@@ -5,7 +5,7 @@
 -- 1. STAGING TABLES (proper types, deduplication)
 -- ============================================================
 
-DROP TABLE IF EXISTS stg_customers;
+DROP TABLE IF EXISTS stg_customers CASCADE;
 CREATE TABLE stg_customers AS
 SELECT
     customer_id::int       AS customer_id,
@@ -17,7 +17,7 @@ SELECT
 FROM raw_customers
 WHERE customer_id ~ '^\d+$';
 
-DROP TABLE IF EXISTS stg_orders;
+DROP TABLE IF EXISTS stg_orders CASCADE;
 CREATE TABLE stg_orders AS
 SELECT
     order_id::int          AS order_id,
@@ -30,7 +30,7 @@ FROM raw_orders
 WHERE order_id ~ '^\d+$'
   AND customer_id ~ '^\d+$';
 
-DROP TABLE IF EXISTS stg_order_items;
+DROP TABLE IF EXISTS stg_order_items CASCADE;
 CREATE TABLE stg_order_items AS
 SELECT
     order_item_id::int     AS order_item_id,
@@ -51,7 +51,7 @@ WHERE order_item_id ~ '^\d+$'
 -- ============================================================
 
 -- dim_customer: one row per customer
-DROP TABLE IF EXISTS dim_customer;
+DROP TABLE IF EXISTS dim_customer CASCADE;
 CREATE TABLE dim_customer AS
 SELECT
     customer_id,
@@ -71,7 +71,7 @@ FROM stg_customers;
 ALTER TABLE dim_customer ADD PRIMARY KEY (customer_id);
 
 -- dim_product: one row per product (latest known price/category)
-DROP TABLE IF EXISTS dim_product;
+DROP TABLE IF EXISTS dim_product CASCADE;
 CREATE TABLE dim_product AS
 WITH ranked AS (
     SELECT
@@ -93,7 +93,7 @@ WHERE rn = 1;
 ALTER TABLE dim_product ADD PRIMARY KEY (product_id);
 
 -- dim_date: date dimension for slicing
-DROP TABLE IF EXISTS dim_date;
+DROP TABLE IF EXISTS dim_date CASCADE;
 CREATE TABLE dim_date AS
 WITH bounds AS (
     SELECT
@@ -121,7 +121,7 @@ ALTER TABLE dim_date ADD PRIMARY KEY (date_key);
 -- 3. FACT TABLE
 -- ============================================================
 
-DROP TABLE IF EXISTS fact_order_items;
+DROP TABLE IF EXISTS fact_order_items CASCADE;
 CREATE TABLE fact_order_items AS
 SELECT
     oi.order_item_id,
