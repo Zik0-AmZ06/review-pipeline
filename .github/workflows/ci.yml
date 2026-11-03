@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:17
+        image: postgres:16
         env:
           POSTGRES_DB: reviews
           POSTGRES_USER: review_app
@@ -30,7 +30,7 @@ jobs:
           --health-cmd="pg_isready -U review_app -d reviews"
           --health-interval=10s
           --health-timeout=5s
-          --health-retries=5
+          --health-retries=10
 
     steps:
       - uses: actions/checkout@v4
@@ -67,12 +67,18 @@ jobs:
           psql -h localhost -p 5432 -U review_app -d reviews -f sql/02_load_csvs.sql
         env:
           PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      - name: dbt build
+        run: dbt build
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
       - name: dbt deps
         run: dbt deps
 
       - name: dbt build
         run: dbt build
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
   dashboard:
     name: Build & Deploy Dashboard
