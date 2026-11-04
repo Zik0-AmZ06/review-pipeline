@@ -89,13 +89,48 @@ jobs:
         env:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
+      - name: Generate dbt docs
+        if: github.ref == 'refs/heads/main'
+        run: dbt docs generate
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+
+      - name: Upload docs artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-docs
+          path: target/
+
+  docs:
+    name: Deploy dbt Docs to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: dbt
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    steps:
+      - name: Download docs artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dbt-docs
+          path: target/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target
+          publish_branch: gh-pages
+
   notify:
     name: Notify
     runs-on: ubuntu-latest
-    needs: dbt
+    needs: [dbt, docs]
     if: always()
     steps:
       - name: Status
         run: |
           echo "Pipeline completed"
           echo "dbt: ${{ needs.dbt.result }}"
+          echo "docs: ${{ needs.docs.result }}"

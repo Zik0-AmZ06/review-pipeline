@@ -1,6 +1,6 @@
 ![CI/CD](https://github.com/Zik0-AmZ06/review-pipeline/actions/workflows/ci.yml/badge.svg)
 [![Streamlit Dashboard](https://img.shields.io/badge/Dashboard-Live-brightgreen)](https://review-pipeline-47wlmbfayhc759wwvepuz9.streamlit.app/)
-[![dbt Docs](https://img.shields.io/badge/dbt_Docs-View-blue)](https://github.com/Zik0-AmZ06/review-pipeline/tree/main/target)
+[![dbt Docs](https://img.shields.io/badge/dbt_Docs-Live-blue)](https://zik0-amz06.github.io/review-pipeline/)
 
 # E-Commerce Data Warehouse Pipeline
 
