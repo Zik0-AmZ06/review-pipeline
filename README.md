@@ -1,14 +1,14 @@
-![CI/CD](https://github.com/Zik0-AmZ06/review-pipeline/workflows/CI/CD%20Pipeline/badge.svg)
+![CI/CD](https://github.com/Zik0-AmZ06/review-pipeline/actions/workflows/ci.yml/badge.svg)
 [![Streamlit Dashboard](https://img.shields.io/badge/Dashboard-Live-brightgreen)](https://review-pipeline-47wlmbfayhc759wwvepuz9.streamlit.app/)
-[![dbt Docs](https://img.shields.io/badge/dbt_Docs-Live-blue)](https://review-pipeline-47wlmbfayhc759wwvepuz9.streamlit.app/dbt-docs)
+[![dbt Docs](https://img.shields.io/badge/dbt_Docs-View-blue)](https://github.com/Zik0-AmZ06/review-pipeline/tree/main/target)
 
-# 🛒 E-Commerce Data Warehouse Pipeline
+# E-Commerce Data Warehouse Pipeline
 
-End-to-end data pipeline: **CSV → PostgreSQL → dbt → Evidence Dashboard**
+End-to-end data pipeline: **CSV -> PostgreSQL -> dbt -> Streamlit Dashboard**
 
 ![Architecture](docs/architecture.png)
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # 1. Start database
@@ -31,25 +31,19 @@ dbt test
 dbt docs generate && dbt docs serve --port 8080
 
 # 6. Launch dashboard
-cd dashboard && npm install && npm run dev
+streamlit run dashboard_app.py
 ```
 
-## 🏗️ Architecture
+## Architecture
 
-```
-┌─────────────┐     ┌──────────────┐     ┌─────────────┐     ┌──────────┐
-│   CSV       │────▶│  PostgreSQL  │────▶│    dbt      │────▶│ Evidence │
-│   Files     │     │  (Raw/Stg)   │     │  (Dims/Fact)│     │ Dashboard│
-└─────────────┘     └──────────────┘     └─────────────┘     └──────────┘
-       │                   │                   │                  │
-       ▼                   ▼                   ▼                  ▼
-   customers.csv      raw_* tables        stg_* models        Monthly Rev
-   orders.csv         (TEXT columns)      dim_* models        Top Products
-   order_items.csv                           fact_order_items   Retention
-                                              (incremental)
+```mermaid
+graph LR
+    A[CSV Files] --> B[PostgreSQL (Raw/Stg)]
+    B --> C[dbt (Dims/Fact)]
+    C --> D[Streamlit Dashboard]
 ```
 
-## 📊 What It Answers
+## What It Answers
 
 | Question | Source |
 |----------|--------|
@@ -58,22 +52,22 @@ cd dashboard && npm install && npm run dev
 | Returning customers? | `customer_id` with `COUNT(DISTINCT order_id) > 1` |
 | Missing/incorrect payments? | Currency breakdown + FX normalization |
 
-## 🧪 Data Quality
+## Data Quality
 
 All issues documented in [dashboard/pages/data_quality.md](dashboard/pages/data_quality.md):
 
-- **Currency mixing** → FX normalization in Python loader
-- **Text columns** → Staging models cast to proper types
-- **No FKs** → dbt relationship tests
-- **Price drift** → dim_product takes latest price
+- **Currency mixing** -> FX normalization in Python loader
+- **Text columns** -> Staging models cast to proper types
+- **No FKs** -> dbt relationship tests
+- **Price drift** -> dim_product takes latest price
 
-## ✅ Testing
+## Testing
 
 ```bash
 dbt test  # 30 tests: unique, not_null, relationships
 ```
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 ├── data/                    # Source CSVs
@@ -82,38 +76,37 @@ dbt test  # 30 tests: unique, not_null, relationships
 ├── models/                  # dbt models
 │   ├── staging/            # stg_* (views)
 │   └── marts/              # dim_*, fact_* (tables)
-├── dashboard/              # Evidence dashboard
-│   ├── sources/            # SQL queries
-│   └── pages/              # Markdown + charts
-└── docs/                   # Architecture diagram
+├── dashboard_app.py         # Streamlit dashboard
+├── docs/                    # Architecture diagram
+└── .github/workflows/ci.yml # CI/CD
 ```
 
-## 🔧 Tech Stack
+## Tech Stack
 
 | Layer | Tool |
 |-------|------|
 | Database | PostgreSQL 17 (Docker) |
 | Transform | dbt (SQL) |
 | Ingestion | Python (pandas, psycopg2, requests) |
-| Dashboard | Evidence (Markdown + SQL) |
+| Dashboard | Streamlit (Python) |
 | Tests | dbt (unique, not_null, relationships) |
 | FX Rates | Frankfurter API (free, no key) |
 
-## 📝 Learning Path (10-12 weeks)
+## Learning Path (10-12 weeks)
 
 | Stage | Weeks | Focus | Status |
 |-------|-------|-------|--------|
-| 1. SQL Foundations | 2 | Joins, CTEs, window functions | ✅ |
-| 2. Data Modeling | 2 | Facts, dims, grain, reconciliation | ✅ |
-| 3. Python Ingestion | 2 | Files, HTTP, JSON, logging | ✅ |
-| 4. Reliable Updates | 1-2 | Incremental, idempotent, quarantine | ✅ |
-| 5. Testing & Automation | 2 | dbt tests, scheduling | 🔄 |
-| 6. Portfolio Delivery | 1-2 | Docs, dashboard, CI/CD | 🔄 |
+| 1. SQL Foundations | 2 | Joins, CTEs, window functions | [x] |
+| 2. Data Modeling | 2 | Facts, dims, grain, reconciliation | [x] |
+| 3. Python Ingestion | 2 | Files, HTTP, JSON, logging | [x] |
+| 4. Reliable Updates | 1-2 | Incremental, idempotent, quarantine | [x] |
+| 5. Testing & Automation | 2 | dbt tests, scheduling | [x] |
+| 6. Portfolio Delivery | 1-2 | Docs, dashboard, CI/CD | [x] |
 
-## 🎯 Next Steps
+## Next Steps
 
-- [ ] Add incremental staging models
-- [ ] Quarantine table for bad rows
-- [ ] GitHub Actions CI/CD (`dbt build`)
+- [x] Add incremental staging models
+- [x] Quarantine table for bad rows
+- [x] GitHub Actions CI/CD (`dbt build`)
 - [ ] Schedule with cron/Airflow
 - [ ] Deploy dashboard (Netlify/Vercel)
