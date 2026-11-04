@@ -2,7 +2,7 @@
 {{ config(
     materialized='incremental',
     unique_key='order_item_id',
-    on_schema_change='fail'
+    on_schema_change='append_new_columns'
 ) }}
 
 with stg_items as (
