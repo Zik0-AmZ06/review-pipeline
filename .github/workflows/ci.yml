@@ -14,9 +14,30 @@ env:
   POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
 jobs:
+  ge:
+    name: Great Expectations Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install great-expectations pandas pyyaml requests
+
+      - name: Run GE Validation
+        run: |
+          cd great_expectations
+          python run_ge_validation.py
+
   dbt:
     name: dbt build
     runs-on: ubuntu-latest
+    needs: ge
     services:
       postgres:
         image: postgres:16-alpine
@@ -132,5 +153,6 @@ jobs:
       - name: Status
         run: |
           echo "Pipeline completed"
+          echo "ge: ${{ needs.ge.result }}"
           echo "dbt: ${{ needs.dbt.result }}"
           echo "docs: ${{ needs.docs.result }}"

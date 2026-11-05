@@ -53,12 +53,13 @@ services:
       AIRFLOW__CELERY__RESULT_BACKEND: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
       AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
-      _PIP_ADDITIONAL_REQUIREMENTS: dbt-postgres psycopg2-binary pandas pyyaml requests
+      _PIP_ADDITIONAL_REQUIREMENTS: dbt-postgres psycopg2-binary pandas pyyaml requests great-expectations
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./ingest:/opt/airflow/ingest
       - ./models:/opt/airflow/models
       - ./sql:/opt/airflow/sql
+      - ./great_expectations:/opt/airflow/great_expectations
     ports:
       - "127.0.0.1:8080:8080"
     command: webserver
@@ -82,12 +83,13 @@ services:
       AIRFLOW__CELERY__BROKER_URL: redis://redis:6379/0
       AIRFLOW__CELERY__RESULT_BACKEND: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
-      _PIP_ADDITIONAL_REQUIREMENTS: dbt-postgres psycopg2-binary pandas pyyaml requests
+      _PIP_ADDITIONAL_REQUIREMENTS: dbt-postgres psycopg2-binary pandas pyyaml requests great-expectations
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./ingest:/opt/airflow/ingest
       - ./models:/opt/airflow/models
       - ./sql:/opt/airflow/sql
+      - ./great_expectations:/opt/airflow/great_expectations
     command: scheduler
 
   airflow-triggerer:
@@ -103,12 +105,13 @@ services:
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       AIRFLOW__CELERY__BROKER_URL: redis://redis:6379/0
       AIRFLOW__CELERY__RESULT_BACKEND: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
-      _PIP_ADDITIONAL_REQUIREMENTS: dbt-postgres psycopg2-binary pandas pyyaml requests
+      _PIP_ADDITIONAL_REQUIREMENTS: dbt-postgres psycopg2-binary pandas pyyaml requests great-expectations
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./ingest:/opt/airflow/ingest
       - ./models:/opt/airflow/models
       - ./sql:/opt/airflow/sql
+      - ./great_expectations:/opt/airflow/great_expectations
     command: triggerer
 
 volumes:

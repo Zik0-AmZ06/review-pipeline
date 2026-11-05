@@ -1,0 +1,72 @@
+config_version: 3.0
+datasources:
+  review_pipeline:
+    class_name: Datasource
+    execution_engine:
+      class_name: PandasExecutionEngine
+    data_connectors:
+      customers:
+        class_name: InferredAssetFilesystemDataConnector
+        base_directory: ../data
+        default_regex:
+          group_names: ["data_asset_name"]
+          pattern: (customers)\.csv
+      orders:
+        class_name: InferredAssetFilesystemDataConnector
+        base_directory: ../data
+        default_regex:
+          group_names: ["data_asset_name"]
+          pattern: (orders)\.csv
+      order_items:
+        class_name: InferredAssetFilesystemDataConnector
+        base_directory: ../data
+        default_regex:
+          group_names: ["data_asset_name"]
+          pattern: (order_items)\.csv
+
+stores:
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: expectations/
+  validations_store:
+    class_name: ValidationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: validations/
+  evaluation_parameter_store:
+    class_name: EvaluationParameterStore
+  checkpoint_store:
+    class_name: CheckpointStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: checkpoints/
+
+data_docs_sites:
+  local_site:
+    class_name: SiteBuilder
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: data_docs/
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
+
+validation_operators:
+  action_list_operator:
+    class_name: ActionListValidationOperator
+    action_list:
+      - name: store_validation_result
+        action:
+          class_name: StoreValidationResultAction
+      - name: store_evaluation_params
+        action:
+          class_name: StoreEvaluationParametersAction
+      - name: update_data_docs
+        action:
+          class_name: UpdateDataDocsAction
+          site_names: [local_site]
+
+config_variables_file_path: uncommitted/config_variables.yml
+
+plugins_directory: plugins/

@@ -3,6 +3,12 @@ from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 
+def run_ge_validation():
+    import sys
+    sys.path.append('/opt/airflow/great_expectations')
+    from run_ge_validation import main
+    main()
+
 default_args = {
     'owner': 'data-engineering',
     'depends_on_past': False,
@@ -20,7 +26,7 @@ with DAG(
     start_date=datetime(2024, 1, 1),
     catchup=False,
     max_active_runs=1,
-    tags=['ecommerce', 'data-warehouse', 'dbt'],
+    tags=['ecommerce', 'data-warehouse', 'dbt', 'great-expectations'],
 ) as dag:
 
     # Task 1: Load raw data via Python ingestion
@@ -36,13 +42,19 @@ with DAG(
         },
     )
 
-    # Task 2: Run dbt deps
+    # Task 2: Run Great Expectations validation
+    ge_validation = PythonOperator(
+        task_id='ge_validation',
+        python_callable=run_ge_validation,
+    )
+
+    # Task 3: Run dbt deps
     dbt_deps = BashOperator(
         task_id='dbt_deps',
         bash_command='cd /opt/airflow && dbt deps',
     )
 
-    # Task 3: Run dbt build
+    # Task 4: Run dbt build
     dbt_build = BashOperator(
         task_id='dbt_build',
         bash_command='cd /opt/airflow && dbt build',
@@ -51,7 +63,7 @@ with DAG(
         },
     )
 
-    # Task 4: Generate dbt docs
+    # Task 5: Generate dbt docs
     dbt_docs = BashOperator(
         task_id='dbt_docs',
         bash_command='cd /opt/airflow && dbt docs generate',
@@ -61,4 +73,4 @@ with DAG(
     )
 
     # Dependencies
-    load_data >> dbt_deps >> dbt_build >> dbt_docs
+    load_data >> ge_validation >> dbt_deps >> dbt_build >> dbt_docs
