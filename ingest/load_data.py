@@ -16,9 +16,15 @@ def load_config(path):
     with open(path) as f: return yaml.safe_load(f)
 
 def get_db_connection(cfg):
+    import os
     db = cfg["database"]
-    return psycopg2.connect(host=db["host"], port=db["port"], dbname=db["dbname"],
-                            user=db["user"], password=db["password"])
+    # Allow env vars to override config (for Airflow/local flexibility)
+    host = os.getenv("POSTGRES_HOST", db["host"])
+    port = int(os.getenv("POSTGRES_PORT", db["port"]))
+    dbname = os.getenv("POSTGRES_DB", db["dbname"])
+    user = os.getenv("POSTGRES_USER", db["user"])
+    password = os.getenv("POSTGRES_PASSWORD", db["password"])
+    return psycopg2.connect(host=host, port=port, dbname=dbname, user=user, password=password)
 
 def fetch_fx_rates(cfg, dates):
     base = cfg["fx_api"]["base_url"]; base_ccy = cfg["fx_api"]["base_currency"]
