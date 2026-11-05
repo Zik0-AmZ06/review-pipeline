@@ -7,7 +7,7 @@ from great_expectations.checkpoint import Checkpoint
 # v0.18+ import path
 try:
     from great_expectations import DataContext
-except ImportError:
+except Exception:
     from great_expectations.data_context import DataContext
 
 def main():
