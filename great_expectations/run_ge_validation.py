@@ -4,11 +4,18 @@ import sys
 from pathlib import Path
 import great_expectations as ge
 from great_expectations.checkpoint import Checkpoint
-# v0.18+ import path
+
+# Try multiple import paths for modern GE versions
 try:
     from great_expectations import DataContext
 except Exception:
-    from great_expectations.data_context import DataContext
+    try:
+        from great_expectations.data_context import DataContext
+    except Exception:
+        try:
+            from great_expectations.data_context.data_context import DataContext
+        except Exception:
+            from great_expectations.data_context import FileDataContext as DataContext
 
 def main():
     ge_root = Path(__file__).parent
