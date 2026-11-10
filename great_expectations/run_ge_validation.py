@@ -20,16 +20,17 @@ except Exception:
 
 def main():
     ge_root = Path(__file__).parent
-    config_path = ge_root / "great_expectations.yml"
     # Try multiple ways to create DataContext
+    # 1. Pass directory (GE expects directory, not file)
     try:
-        context = DataContext(str(config_path))
+        context = DataContext(str(ge_root))
     except Exception:
-        # Fallback: use FileDataContext.create with explicit config
+        # 2. Fallback: explicit config dict with FileDataContext
         from great_expectations.data_context import FileDataContext
+        config_path = ge_root / "great_expectations.yml"
         with open(config_path) as f:
             project_config = yaml.safe_load(f)
-        context = FileDataContext.create(project_config=project_config)
+        context = FileDataContext(project_config=project_config)
 
     # Run the checkpoint
     checkpoint = Checkpoint(
