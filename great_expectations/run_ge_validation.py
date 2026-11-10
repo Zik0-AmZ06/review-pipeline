@@ -2,6 +2,7 @@
 """Run Great Expectations validation for ingestion."""
 import sys
 from pathlib import Path
+import yaml
 import great_expectations as ge
 from great_expectations.checkpoint import Checkpoint
 
@@ -19,7 +20,16 @@ except Exception:
 
 def main():
     ge_root = Path(__file__).parent
-    context = DataContext(str(ge_root))
+    config_path = ge_root / "great_expectations.yml"
+    # Try multiple ways to create DataContext
+    try:
+        context = DataContext(str(config_path))
+    except Exception:
+        # Fallback: use FileDataContext.create with explicit config
+        from great_expectations.data_context import FileDataContext
+        with open(config_path) as f:
+            project_config = yaml.safe_load(f)
+        context = FileDataContext.create(project_config=project_config)
 
     # Run the checkpoint
     checkpoint = Checkpoint(
