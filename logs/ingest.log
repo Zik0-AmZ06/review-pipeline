@@ -318,3 +318,13 @@ Ingestion run
 2026-11-03 13:03:21,299 | INFO     | Upserted 32 clean rows to stg_i
 2026-11-03 13:03:21,980 | INFO     | Dims+fact rebuilt
 2026-11-03 13:03:21,981 | INFO     | Done
+2026-11-06 13:56:20,700 | INFO     | ============================================================
+Ingestion run
+2026-11-06 13:56:20,826 | INFO     | Loaded c: 20 rows
+2026-11-06 13:56:20,829 | INFO     | Loaded o: 30 rows
+2026-11-06 13:56:20,831 | INFO     | Loaded i: 32 rows
+2026-11-06 13:56:36,865 | INFO     | Upserted 20 clean rows to stg_c
+2026-11-06 13:56:36,997 | INFO     | Upserted 30 clean rows to stg_o
+2026-11-06 13:56:37,135 | INFO     | Upserted 32 clean rows to stg_i
+2026-11-06 13:56:37,681 | INFO     | Dims+fact rebuilt
+2026-11-06 13:56:37,683 | INFO     | Done

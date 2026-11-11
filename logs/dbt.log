@@ -5610,3 +5610,70 @@ drop table if exists "reviews"."public"."fact_order_items__dbt_backup" cascade
 [0m15:10:31.898603 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000183257AFE80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018327E55630>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001832504BC40>]}
 [0m15:10:31.901818 [debug] [MainThread]: Flushing usage events
 [0m15:10:39.729706 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:11:22.504290 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+
+[0m16:11:23.033643 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\requires.py", line 211, in wrapper
+    result, success = func(*args, **kwargs)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\requires.py", line 157, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\requires.py", line 308, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\requires.py", line 353, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\requires.py", line 400, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\main.py", line 324, in docs_serve
+    results = task.run()
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\task\docs\serve.py", line 29, in run
+    httpd.serve_forever()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\socketserver.py", line 232, in serve_forever
+    ready = selector.select(poll_interval)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\selectors.py", line 324, in select
+    r, w, _ = self._select(self._readers, self._writers, [], timeout)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\selectors.py", line 315, in _select
+    r, w, x = select.select(r, w, w, timeout)
+KeyboardInterrupt
+
+[0m16:11:23.247274 [debug] [MainThread]: Command `dbt docs serve` failed at 16:11:23.234821 after 527258.88 seconds
+[0m16:11:23.315349 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DF631AFF10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DF658F9F90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DF658FA410>]}
+[0m16:11:23.358421 [debug] [MainThread]: Flushing usage events
+[0m16:11:24.966872 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:13:04.829655 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017CDCE0FEE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017CE02B4AF0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017CE02B4910>]}
+
+
+============================== 16:13:04.914551 | 99a5aa06-8a92-4c2b-a064-c1b9acf7ab84 ==============================
+[0m16:13:04.914551 [info ] [MainThread]: Running with dbt=1.13.0-b1
+[0m16:13:04.922019 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\amouz\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'invocation_command': 'dbt docs serve --port 8080', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'use_colors': 'True', 'log_path': 'C:\\Users\\amouz\\source\\repos\\review-pipeline\\logs'}
+[0m16:13:04.926080 [debug] [MainThread]: Tracking: tracking
+[0m16:13:08.178857 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '99a5aa06-8a92-4c2b-a064-c1b9acf7ab84', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017CE02B4CA0>]}
+[0m16:13:08.609957 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '99a5aa06-8a92-4c2b-a064-c1b9acf7ab84', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017CDEFD50C0>]}
+[0m17:56:23.571844 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+
+[0m17:56:24.408877 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\requires.py", line 211, in wrapper
+    result, success = func(*args, **kwargs)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\requires.py", line 157, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\requires.py", line 308, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\requires.py", line 353, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\requires.py", line 400, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\cli\main.py", line 324, in docs_serve
+    results = task.run()
+  File "C:\Users\amouz\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\dbt\task\docs\serve.py", line 29, in run
+    httpd.serve_forever()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\socketserver.py", line 232, in serve_forever
+    ready = selector.select(poll_interval)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\selectors.py", line 324, in select
+    r, w, _ = self._select(self._readers, self._writers, [], timeout)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\selectors.py", line 315, in _select
+    r, w, x = select.select(r, w, w, timeout)
+KeyboardInterrupt
+
+[0m17:56:24.741936 [debug] [MainThread]: Command `dbt docs serve` failed at 17:56:24.679534 after 6200.75 seconds
+[0m17:56:24.985275 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017CDCE0FEE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017CE05F9F60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017CE05FA1A0>]}
+[0m17:56:25.084459 [debug] [MainThread]: Flushing usage events
+[0m17:56:27.424315 [debug] [MainThread]: An error was encountered while trying to flush usage events

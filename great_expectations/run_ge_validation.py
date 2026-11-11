@@ -1,81 +1,56 @@
 #!/usr/bin/env python3
-"""Run Great Expectations validation for ingestion."""
+"""Run Great Expectations validation for ingestion (GE 0.18+ compatible)."""
 import sys
 from pathlib import Path
-import yaml
 import great_expectations as ge
 from great_expectations.checkpoint import Checkpoint
-
-# Try multiple import paths for modern GE versions
-try:
-    from great_expectations import DataContext
-except Exception:
-    try:
-        from great_expectations.data_context import DataContext
-    except Exception:
-        try:
-            from great_expectations.data_context.data_context import DataContext
-        except Exception:
-            from great_expectations.data_context import FileDataContext as DataContext
+from great_expectations.core.batch import BatchRequest
 
 def main():
     ge_root = Path(__file__).parent
-    # Try multiple ways to create DataContext
-    # 1. Pass directory (GE expects directory, not file)
-    try:
-        context = DataContext(str(ge_root))
-    except Exception:
-        # 2. Fallback: explicit config dict with FileDataContext
-        from great_expectations.data_context import FileDataContext
-        config_path = ge_root / "great_expectations.yml"
-        with open(config_path) as f:
-            project_config = yaml.safe_load(f)
-        context = FileDataContext(project_config=project_config)
 
-    # Run the checkpoint
+    # Create DataContext - GE 0.18+ automatically finds great_expectations.yml
+    context = ge.get_context(context_root_dir=str(ge_root))
+
+    # Define batch requests using the new v3 API
+    batch_requests = [
+        BatchRequest(
+            datasource_name="review_pipeline",
+            data_connector_name="customers",
+            data_asset_name="customers",
+            batch_spec_passthrough={"path": str(ge_root.parent / "data" / "customers.csv")},
+        ),
+        BatchRequest(
+            datasource_name="review_pipeline",
+            data_connector_name="orders",
+            data_asset_name="orders",
+            batch_spec_passthrough={"path": str(ge_root.parent / "data" / "orders.csv")},
+        ),
+        BatchRequest(
+            datasource_name="review_pipeline",
+            data_connector_name="order_items",
+            data_asset_name="order_items",
+            batch_spec_passthrough={"path": str(ge_root.parent / "data" / "order_items.csv")},
+        ),
+    ]
+
+    # Create checkpoint using new API
     checkpoint = Checkpoint(
         name="ingestion_checkpoint",
         data_context=context,
-        config_version=1.0,
-        class_name="Checkpoint",
         run_name_template="%Y%m%d-%H%M%S-ingestion-validation",
         action_list=[
             {"name": "store_validation_result", "action": {"class_name": "StoreValidationResultAction"}},
             {"name": "store_evaluation_params", "action": {"class_name": "StoreEvaluationParametersAction"}},
             {"name": "update_data_docs", "action": {"class_name": "UpdateDataDocsAction", "site_names": ["local_site"]}},
         ],
-        batches=[
-            {
-                "batch_kwargs": {
-                    "path": str(ge_root.parent / "data" / "customers.csv"),
-                    "datasource": "review_pipeline",
-                    "data_connector": "customers",
-                    "data_asset_name": "customers",
-                },
-                "expectation_suite_names": ["customers_suite"],
-            },
-            {
-                "batch_kwargs": {
-                    "path": str(ge_root.parent / "data" / "orders.csv"),
-                    "datasource": "review_pipeline",
-                    "data_connector": "orders",
-                    "data_asset_name": "orders",
-                },
-                "expectation_suite_names": ["orders_suite"],
-            },
-            {
-                "batch_kwargs": {
-                    "path": str(ge_root.parent / "data" / "order_items.csv"),
-                    "datasource": "review_pipeline",
-                    "data_connector": "order_items",
-                    "data_asset_name": "order_items",
-                },
-                "expectation_suite_names": ["order_items_suite"],
-            },
-        ],
     )
 
-    results = checkpoint.run()
+    # Run checkpoint with batch requests
+    results = checkpoint.run(
+        batch_request=batch_requests,
+        expectation_suite_names=["customers_suite", "orders_suite", "order_items_suite"],
+    )
 
     # Print summary
     print(f"\n{'='*60}")
@@ -90,10 +65,10 @@ def main():
         print(f"  Failed: {vr['statistics']['unsuccessful_expectations']}")
 
     if not results["success"]:
-        print("\n❌ Validation FAILED")
+        print("\n✗ Validation FAILED")
         sys.exit(1)
 
-    print("\n✅ All validations PASSED")
+    print("\n✓ All validations PASSED")
     print(f"\nData Docs available at: {ge_root}/data_docs/index.html")
 
 if __name__ == "__main__":
