@@ -1,28 +1,20 @@
+# great_expectations.yml - GE 0.18+ v3 format
 config_version: 3.0
+
 datasources:
   review_pipeline:
-    class_name: Datasource
-    execution_engine:
-      class_name: PandasExecutionEngine
-    data_connectors:
+    type: pandas_filesystem
+    base_directory: ../data
+    data_assets:
       customers:
-        class_name: InferredAssetFilesystemDataConnector
-        base_directory: ../data
-        default_regex:
-          group_names: ["data_asset_name"]
-          pattern: (customers)\.csv
+        type: csv
+        batching_regex: customers\.csv
       orders:
-        class_name: InferredAssetFilesystemDataConnector
-        base_directory: ../data
-        default_regex:
-          group_names: ["data_asset_name"]
-          pattern: (orders)\.csv
+        type: csv
+        batching_regex: orders\.csv
       order_items:
-        class_name: InferredAssetFilesystemDataConnector
-        base_directory: ../data
-        default_regex:
-          group_names: ["data_asset_name"]
-          pattern: (order_items)\.csv
+        type: csv
+        batching_regex: order_items\.csv
 
 stores:
   expectations_store:
@@ -51,22 +43,3 @@ data_docs_sites:
       base_directory: data_docs/
     site_index_builder:
       class_name: DefaultSiteIndexBuilder
-
-validation_operators:
-  action_list_operator:
-    class_name: ActionListValidationOperator
-    action_list:
-      - name: store_validation_result
-        action:
-          class_name: StoreValidationResultAction
-      - name: store_evaluation_params
-        action:
-          class_name: StoreEvaluationParametersAction
-      - name: update_data_docs
-        action:
-          class_name: UpdateDataDocsAction
-          site_names: [local_site]
-
-config_variables_file_path: uncommitted/config_variables.yml
-
-plugins_directory: plugins/
