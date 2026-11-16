@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run Great Expectations validation for ingestion (GE 0.18+ compatible)."""
+"""Run Great Expectations validation - GE 0.18+ v3 API."""
 import sys
 from pathlib import Path
 import great_expectations as ge
@@ -9,32 +9,28 @@ from great_expectations.core.batch import BatchRequest
 def main():
     ge_root = Path(__file__).parent
 
-    # Create DataContext - GE 0.18+ automatically finds great_expectations.yml
+    # v3 API: auto-discovers great_expectations.yml
     context = ge.get_context(context_root_dir=str(ge_root))
 
-    # Define batch requests using the new v3 API
+    # v3 BatchRequest format
     batch_requests = [
         BatchRequest(
             datasource_name="review_pipeline",
-            data_connector_name="customers",
             data_asset_name="customers",
             batch_spec_passthrough={"path": str(ge_root.parent / "data" / "customers.csv")},
         ),
         BatchRequest(
             datasource_name="review_pipeline",
-            data_connector_name="orders",
             data_asset_name="orders",
             batch_spec_passthrough={"path": str(ge_root.parent / "data" / "orders.csv")},
         ),
         BatchRequest(
             datasource_name="review_pipeline",
-            data_connector_name="order_items",
             data_asset_name="order_items",
             batch_spec_passthrough={"path": str(ge_root.parent / "data" / "order_items.csv")},
         ),
     ]
 
-    # Create checkpoint using new API
     checkpoint = Checkpoint(
         name="ingestion_checkpoint",
         data_context=context,
@@ -46,13 +42,11 @@ def main():
         ],
     )
 
-    # Run checkpoint with batch requests
     results = checkpoint.run(
         batch_request=batch_requests,
         expectation_suite_names=["customers_suite", "orders_suite", "order_items_suite"],
     )
 
-    # Print summary
     print(f"\n{'='*60}")
     print(f"Great Expectations Validation Results")
     print(f"{'='*60}")
