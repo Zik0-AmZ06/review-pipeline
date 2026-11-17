@@ -15,6 +15,14 @@ env:
   # For Neon:
   NEON_DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
 
+steps:
+  - name: Create .env for tests
+    run: |
+      cat << EOF > .env
+      POSTGRES_DB=${POSTGRES_DB}
+      POSTGRES_USER=${POSTGRES_USER}
+      POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      EOF
 jobs:
   ge:
     name: Great Expectations Validation
