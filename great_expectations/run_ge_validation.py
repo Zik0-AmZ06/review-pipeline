@@ -8,11 +8,9 @@ from great_expectations.core.batch import BatchRequest
 
 def main():
     ge_root = Path(__file__).parent
-
-    # v3 API: auto-discovers great_expectations.yml
     context = ge.get_context(context_root_dir=str(ge_root))
 
-    # v3 BatchRequest format
+    # v3 BatchRequest - NO data_connector_name needed
     batch_requests = [
         BatchRequest(
             datasource_name="review_pipeline",

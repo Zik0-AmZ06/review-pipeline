@@ -12,7 +12,6 @@ env:
   POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
   POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
   POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-  # For Neon:
   NEON_DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
 
 jobs:
@@ -21,16 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Install dependencies
         run: |
           pip install great-expectations pandas pyyaml requests
-
       - name: Run GE Validation
         run: |
           cd great_expectations
@@ -55,19 +51,15 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=10
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Install dependencies
         run: |
           pip install dbt-postgres psycopg2-binary pandas pyyaml requests
-
       - name: Create profiles.yml
         run: |
           mkdir -p ~/.dbt
@@ -85,7 +77,6 @@ jobs:
                 schema: public
                 threads: 4
           DBTEOF
-
       - name: Initialize database schema
         run: |
           psql -h localhost -p 5433 -U review_app -d reviews -f sql/01_create_raw_tables.sql
@@ -94,7 +85,6 @@ jobs:
           psql -h localhost -p 5433 -U review_app -d reviews -f sql/05_create_quarantine_tables.sql
         env:
           PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-
       - name: Load data via Python (portable)
         run: python ingest/load_data.py
         env:
@@ -103,21 +93,17 @@ jobs:
           POSTGRES_DB: reviews
           POSTGRES_USER: review_app
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-
       - name: dbt deps
         run: dbt deps
-
       - name: dbt build
         run: dbt build
         env:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-
       - name: Generate dbt docs
         if: github.ref == 'refs/heads/main'
         run: dbt docs generate
         env:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-
       - name: Upload docs artifact
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
@@ -138,7 +124,6 @@ jobs:
         with:
           name: dbt-docs
           path: target/
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
